@@ -281,19 +281,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/Admin/Categories" class="nav-link">
+                                    <a asp-controller="Categories" asp-action="Index" class="nav-link">
                                         <i class="nav-icon bi bi-circle"></i>
                                         <p>Index</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Admin/Categories/Create" class="nav-link">
+                                    <a asp-controller="Categories" asp-action="Create"  class="nav-link">
                                         <i class="nav-icon bi bi-circle"></i>
                                         <p>Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Admin/Categories/Create" class="nav-link">
+                                    <a asp-controller="Categories" asp-action="Create" class="nav-link">
                                         <i class="nav-icon bi bi-circle"></i>
                                         <p>Dashboard v3</p>
                                     </a>
@@ -454,6 +454,12 @@
     </script>
     <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
+  
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+   
+   
 </body>
 <!--end::Body-->
 </html>

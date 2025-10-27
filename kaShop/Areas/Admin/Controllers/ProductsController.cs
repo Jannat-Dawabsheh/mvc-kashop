@@ -20,6 +20,7 @@ namespace kaShop.Areas.Admin.Controllers
             return View(new Product());
         }
 
+        [ValidateAntiForgeryToken]
         public IActionResult Store(Product request,IFormFile file)
         {
             if(file!=null && file.Length >0)
@@ -38,6 +39,7 @@ namespace kaShop.Areas.Admin.Controllers
                 context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Categories = context.Categories.ToList();
 
             return View("Create", request);
         }
@@ -51,6 +53,37 @@ namespace kaShop.Areas.Admin.Controllers
 
 
         }
+
+        public IActionResult Update(Product request, IFormFile? file)
+        {
+            var product = context.Products.Find(request.Id);
+            product.Name = request.Name;
+            product.Description = request.Description;
+            product.Price = request.Price;
+            product.Quantity = request.Quantity;
+            product.CategoryId = request.CategoryId;
+
+            if (file != null && file.Length > 0)
+            {
+                var oldfilePath = Path.Combine(Directory.GetCurrentDirectory(), @"WWWroot\images", product.Image);
+                System.IO.File.Delete(oldfilePath);
+                var fileName = Guid.NewGuid().ToString();
+                fileName += Path.GetExtension(file.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"WWWroot\images", fileName);
+
+                using (var stream = System.IO.File.Create(filePath))
+                {
+                    file.CopyTo(stream);
+                }
+                product.Image = fileName;
+
+            }
+
+            context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+
         public IActionResult Remove(int id)
         {
             var product=context.Products.Find(id);

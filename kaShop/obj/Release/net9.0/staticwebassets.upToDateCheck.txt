@@ -70,6 +70,8 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\images\8bbea88f-93f3-4312-b12e-763f14cee994.jpg
+wwwroot\images\e45e758c-fed5-46a8-a6e9-2599625e1bb1.jpg
 C:\Users\ashraf\source\repos\kaShop\kaShop\wwwroot\Admin\css\adminlte.css
 C:\Users\ashraf\source\repos\kaShop\kaShop\wwwroot\Admin\css\adminlte.css.map
 C:\Users\ashraf\source\repos\kaShop\kaShop\wwwroot\Admin\js\adminlte.js
