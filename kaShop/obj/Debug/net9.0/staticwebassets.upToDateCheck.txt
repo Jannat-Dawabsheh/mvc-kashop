@@ -9,6 +9,7 @@ wwwroot\Admin\js\adminlte.js
 wwwroot\Admin\js\adminlte.js.map
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\8bbea88f-93f3-4312-b12e-763f14cee994.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map

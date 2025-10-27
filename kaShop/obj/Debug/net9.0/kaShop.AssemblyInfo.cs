@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("kaShop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+771c377a8d36ab3d9e680db02d06b4f8a197544a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+713c92b1d949dabb190e1e84b7dc105ecd60c1bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("kaShop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("kaShop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
