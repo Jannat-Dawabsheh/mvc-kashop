@@ -18,14 +18,14 @@ namespace kaShop.Models
         [Range(0.01,10000,ErrorMessage = "product price must be between 0.01 and 10000")]
         public decimal Price { get; set; }
         [Range(1, 5, ErrorMessage = "product rate must be between 1 and 5")]
-        public int Rate { get; set; }
+        public int? Rate { get; set; }
 
         [Required(ErrorMessage = "product quantity is required")]
         [Range(1, int.MaxValue)]
         public int Quantity { get; set; }
 
         [ValidateNever]
-        public string Image { get; set; }
+        public string? Image { get; set; }
 
         public int CategoryId { get; set; }
         [ValidateNever]

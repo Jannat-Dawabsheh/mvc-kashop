@@ -1,6 +1,8 @@
 ﻿using kaShop.Data;
 using kaShop.Models;
+using kaShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace kaShop.Areas.Admin.Controllers
 {
@@ -10,8 +12,23 @@ namespace kaShop.Areas.Admin.Controllers
         ApplicationDbContext context=new ApplicationDbContext();
         public IActionResult Index()
         {
-            var products = context.Products.ToList();
-            return View(products);
+            var products = context.Products.Include(p=>p.Category).ToList();
+            var productsVm=new List<ProductsViewModel>();
+            foreach (var item in products)
+            {
+                var vm = new ProductsViewModel
+                {
+                    Id= item.Id,
+                    Name = item.Name,
+                    Price = item.Price,
+                    Description = item.Description,
+                    ImageUrl=$"{Request.Scheme}://{Request.Host}/images/{item.Image}",
+                    CategoryName=item.Category.Name
+
+                };
+                productsVm.Add(vm);
+            }
+            return View(productsVm);
         }
 
         public IActionResult Create()
@@ -20,10 +37,38 @@ namespace kaShop.Areas.Admin.Controllers
             return View(new Product());
         }
 
-        [ValidateAntiForgeryToken]
+  
         public IActionResult Store(Product request,IFormFile file)
         {
-            if(file!=null && file.Length >0)
+            ViewBag.Categories = context.Categories.ToList();
+            ModelState.Remove("File");
+            if (!ModelState.IsValid)
+            {
+                
+
+                return View("Create", request);
+
+            }
+            if (file==null || file.Length == 0)
+            {
+                ModelState.AddModelError("Image", "Please upload an image");
+                return View("Create", request);
+
+            }
+            var allowedExtention = new[] { ".jpg", ".webp" };
+            var extention= Path.GetExtension(file.FileName).ToLower();
+            if (!allowedExtention.Contains(extention)) {
+
+                ModelState.AddModelError("Image", "Only jpg , webp files are allowed");
+                return View("Create", request);
+            }
+
+            if (file.Length > 2 * 1024 * 1024)
+            {
+                ModelState.AddModelError("Image", "Image size must be less than 2MB");
+                return View("Create", request);
+            }
+            if (file!=null && file.Length >0)
             {
                 var fileName = Guid.NewGuid().ToString();
                 fileName += Path.GetExtension(file.FileName);
