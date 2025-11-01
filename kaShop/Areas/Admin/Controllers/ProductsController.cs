@@ -140,5 +140,26 @@ namespace kaShop.Areas.Admin.Controllers
 
 
         }
+
+        public IActionResult Details(int id)
+        {
+            var product = context.Products.Find(id);
+            ViewBag.Categories = context.Categories.ToList();
+            var vm = new ProductsViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                ImageUrl = $"{Request.Scheme}://{Request.Host}/images/{product.Image}",
+                CategoryName = product.Category.Name
+
+            };
+           
+        
+            return View(vm);
+
+
+    }
     }
 }
